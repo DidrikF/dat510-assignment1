@@ -1,0 +1,19 @@
+{
+  "name": "dat510-assignment1",
+  "version": "1.0.0",
+  "description": "DAT510 Assignment 1 - Vinegere Cipher and Simple DES\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b\u001b[C\u001b[C\u001b[C\u001b[\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[D\u001b[D\u001b[D\u001b[2~\u001b[\u001b[C\u001b[3~\u001b[3~\u001b[2\u001b[D\u001b[C\u001b[Dgenere",
+  "main": "built/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DidrikF/dat510-assignment1.git"
+  },
+  "author": "Didrik Fleischer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DidrikF/dat510-assignment1/issues"
+  },
+  "homepage": "https://github.com/DidrikF/dat510-assignment1#readme"
+}
