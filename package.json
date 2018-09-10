@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/DidrikF/dat510-assignment1/issues"
   },
-  "homepage": "https://github.com/DidrikF/dat510-assignment1#readme"
+  "homepage": "https://github.com/DidrikF/dat510-assignment1#readme",
+  "dependencies": {
+    "console.table": "^0.10.0"
+  }
 }
