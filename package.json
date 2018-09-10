@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/DidrikF/dat510-assignment1#readme",
   "dependencies": {
+    "colors": "^1.3.2",
     "console.table": "^0.10.0"
   }
 }
