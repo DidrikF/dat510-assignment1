@@ -12,6 +12,7 @@ try {
 } catch (err) {
     console.log('Failed to read cipher-text file.')
     console.log(err);
+    process.exit(1)
 }
 
 

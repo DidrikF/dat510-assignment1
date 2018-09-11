@@ -1,10 +1,10 @@
-const { allPossibleCases, factorial, characterDistributionArray, numberLetter, getCharacterCountBlueprint, translateCharactersToNumberes, translateNumbersToCharacters, numberAlphabet, getCharNumberCountBlueprint } = require('./helpers');
+const { allPossibleCases, characterDistributionArray, numberLetter, getCharacterCountBlueprint, translateCharactersToNumberes, translateNumbersToCharacters, numberAlphabet, getCharNumberCountBlueprint } = require('./helpers');
 const cTable = require('console.table');
 const colors = require('colors');
 
 module.exports = class Decrypter {
   /**
-   * 
+   * Builds the Decrypter object and set some parameters on it. Including the cipher text to be decrypted and the maximum key length used for encryption.
    * @param {string} cipherText 
    * @param {number} maxLength 
    */
@@ -19,6 +19,10 @@ module.exports = class Decrypter {
     this.uncertainKey = [];
   }
 
+  /**
+   * Decrypt the Decrypter's cipher text, assuming its a Vigenere cipher.
+   * @param {number} attempts 
+   */
   decrypt(attempts) {
     
     this.calculateICResults();
@@ -86,7 +90,8 @@ module.exports = class Decrypter {
     }
   }
   /**
-   * 
+   * Goes through the Index of Coincidence (IC) results for each key length (period) and sorts them based on the average IC.
+   * The key lengths with the higest IC, up to a number of "numberOfPossibleKeys" keys, are returned in an array.
    * @param {number} numberOfPossibleKeys 
    * @return {array} likelyKeyLengths
    */
@@ -108,7 +113,7 @@ module.exports = class Decrypter {
     return likelyKeyLengths;
   }
   /**
-   * Uses frequency analysis, applying the Chi-squared statistic, to find likely characters in the key, given a length.
+   * Uses frequency analysis, applying the Chi-squared statistic, to find likely characters in the key, given a key length.
    * @param {number} keyLength
    * @return {number[][]} bruteForceKey
    */
@@ -123,21 +128,17 @@ module.exports = class Decrypter {
     const possibleKeys = [];
 
     // Apply frequency analysis to each sequence (which was encrypted using the same Cesar cipher)
-    
-    //There is only 25 possible keys 
     sequences.forEach((sequence, charPosInKey) => {      
       // run through each of the 26 characters in the alphabet
       numberAlphabet.forEach((charNum) => {
 
         // decrypt the sequence using each character in the alphabet
         const decrypted = this.decryptCesarCipher(sequence, charNum);
-        // console.log(decrypted.join(','))
 
         // count the occurrences of each character in the alphabet in the "decrypted" sequence 
         const charNumberCount = this.countCharNumbers(decrypted); // OBS count characters as numbers
-        // calculate the Chi-squared statistic for the decrypted sequence
         
-        // console.log(charNumberCount)
+        // calculate the Chi-squared statistic for the decrypted sequence
         let chiSquared = 0;
         numberAlphabet.forEach(charNum2 => {
           chiSquared += Math.pow(charNumberCount[charNum2] - characterDistributionArray[charNum2]*sequence.length, 2) / (characterDistributionArray[charNum2]*sequence.length)
@@ -145,6 +146,7 @@ module.exports = class Decrypter {
 
         // For each position in the key, store the chi-squared of each character
         if (!frequencyAnalysisResults[charPosInKey]) frequencyAnalysisResults[charPosInKey] = [];
+        
         frequencyAnalysisResults[charPosInKey].push({
           character: numberLetter[charNum],
           keyChar: charNum,
@@ -152,21 +154,28 @@ module.exports = class Decrypter {
         })
 
       })
+
       // get the three most probable characters for each position in the key (array of arrays)
-      
       frequencyAnalysisResults[charPosInKey].sort((a, b) => {
         return a.chiSquared - b.chiSquared;
       })
-
-
-
       possibleKeys.push([frequencyAnalysisResults[charPosInKey][0].character, frequencyAnalysisResults[charPosInKey][1].character, frequencyAnalysisResults[charPosInKey][2].character])
+    
     })
-    // return the array of arrays of characters to be used for brute force attack
+    // Store frequency analysis using Chi-squared if the user later wants to print them to stdout.
     this.frequencyAnalysisResults = frequencyAnalysisResults;
+    
+    // return the array of arrays of characters to be used for brute force attack
     return possibleKeys;
   }
 
+  /**
+   * Finds all possible keys given an array of arrays of characters and tries each of them up until a given number of attamps.
+   * Having the characters for each key position sorted in decending order according to the chi-squared statistic should yield
+   * the decrypted text in fewer attempts.
+   * @param {string[][]} possibleKeys 
+   * @param {number} attempts 
+   */
   bruteForce (possibleKeys, attempts) {
     const possibleKeyCombinations = allPossibleCases(possibleKeys);
     let i = 0;
@@ -178,8 +187,7 @@ module.exports = class Decrypter {
   }
 
   /**
-   * Take the cipher text expressed as an array of numbers (0-25) and decipher it using the key, also a number, and decrypt it as a Cesar cipher.
-   * @param {number[]} cipherNumbers 
+   * Takes the Cesar cipher text expressed as an array of numbers (0-25) and decipher it using the key, also a number.
    * @param {number} keyNumber 
    */
   decryptCesarCipher (cipherNumbers, keyNumber) {
@@ -193,7 +201,7 @@ module.exports = class Decrypter {
   }
 
   /**
-   * 
+   * Decrypts a Vigenere cipher text expressed as an array of numbers (0-25) and deciphers it using the key, also an array of numbers.
    * @param {number[]} cipherNumbers 
    * @param {number[]} keyNumbers 
    */
@@ -228,6 +236,11 @@ module.exports = class Decrypter {
     return characterCount;
   }
 
+  /**
+   * Count the number of occurrences of numbers (0-25) in an array.
+   * @param {number[]} sequence
+   * @returns {object} charNumberCount
+   */
   countCharNumbers (sequence) {
     const charNumberCount = getCharNumberCountBlueprint();
     for (let i = 0; i < sequence.length; i++) {
@@ -246,8 +259,8 @@ module.exports = class Decrypter {
 
 
   /**
-   * 
-   * @param {Array} sequence 
+   * Calculate the Index of Coincidence for an array of characters.
+   * @param {string[]} sequence 
    * @return {number} IC
    */
   IoC(sequence) {
@@ -263,9 +276,9 @@ module.exports = class Decrypter {
   }
 
   /**
-   * 
+   * Extract sequences from the Decrypter chipher text with a given period.
    * @param {number} period 
-   * @returns {array} sequences
+   * @returns {string[][]} sequences
    */
   extractSequences (period) {
     let sequences = [];
@@ -310,42 +323,6 @@ module.exports = class Decrypter {
   }
 }
 
-
-// Find period:
-// calcultate Index of Coinsidence
-// best n matches are preserved as possible key lengths. (should be fairly certain about this one)
-    // need only to test up to a period of 10
-
-
-// Solve each of the characters as you would a Cesar cipher using frequency analysis, by calculating the Chi-squared statistic for each of the 26 possible characters (use numbers for characters)
-
-// the m characters (numbers) with the lowest chi-squared are preserved as possible vlues for the key
-
-
-
-// With m possible characters for each position of the key, the text is decrypted with each possible key 
-    // the decrypted text, from each key, has the frequency distributions calculated and compared to the frequency distribution in the English language using Chi-Squared statistic.
-    // rank order the decrypted texts with the lowest Chi-squared apprearing first
-    // print the fist k characters for each decrypted text to the console (together with the key used), rank order according to chi-squared,
-    // The user manually reads each line until the correct key is found
-
-
-
-
-// The CLI tool need to be able to decrypt the cipher text given a key
-
-
-/*
-{
-        seq1: {
-          sequence:
-          ic: 
-        },
-        seq2: 
-      }
-
-
-*/
 
 // use generator function to create an iterator, looping though the available keys.
 
