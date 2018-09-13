@@ -266,12 +266,12 @@ module.exports = class Decrypter {
   IoC(sequence) {
     const characterCount = this.countCharacters(sequence)
   
-    let enumerator = 0;
+    let numerator = 0;
     Object.values(characterCount).forEach((numberOfOccurrences) => {
-      enumerator += numberOfOccurrences * (numberOfOccurrences - 1);
+      numerator += numberOfOccurrences * (numberOfOccurrences - 1);
     })
   
-    const IC = enumerator / ( (sequence.length * (sequence.length - 1) ) / this.alphabetLength )
+    const IC = numerator / ( (sequence.length * (sequence.length - 1) ) / this.alphabetLength )
     return IC;
   }
 

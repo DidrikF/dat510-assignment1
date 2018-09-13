@@ -76,7 +76,7 @@ class Trippel_SDES_Decrypter {
         const possibleKeys = allPossibleCases([['0', '1'], ['0', '1'], ['0', '1'], ['0', '1'], ['0', '1'], ['0', '1'], ['0', '1'], ['0', '1'], ['0', '1'], ['0', '1'], ['0', '1'], ['0', '1'], ['0', '1'], ['0', '1'], ['0', '1'], ['0', '1'], ['0', '1'], ['0', '1'], ['0', '1'], ['0', '1']])
         let decrypted = [];
 
-        possibleKeys.slice(1000000).forEach((key, index) => {
+        possibleKeys.slice(1020000).forEach((key, index) => {
             let plain_text = '';
             const key1 = key.slice(0, 10)
             const key2 = key.slice(10)
@@ -101,10 +101,11 @@ class Trippel_SDES_Decrypter {
                 asciiCodes: asciiCodes,
                 key1: key1,
                 key2: key2,
-                count: normalLetterCount
+                count: normalLetterCount,
+                keyIndex: index
             })
 
-            if ((index % 10000) === 0) {
+            if ((index % 5000) === 0) {
                 console.log('Have decrypted using ' + index + ' keys')
             }
 
@@ -116,9 +117,10 @@ class Trippel_SDES_Decrypter {
         })
 
 
-        // print the top 20 decrypted results
-        decrypted.slice(0, 100).forEach(decryptedObject => {
-            console.log(colors.green(decryptedObject.key1 + ' - ' + decryptedObject.key2 + ': ') + colors.red(decryptedObject.count) + ': ' + decimalToString(decryptedObject.asciiCodes))
+        // print the top 15 decrypted results
+        console.log(colors.cyan('\nTop 15 results:\n'))
+        decrypted.slice(0, 15).forEach(decryptedObject => {
+            console.log(colors.green(decryptedObject.keyIndex + ': ' + decryptedObject.key1 + ' - ' + decryptedObject.key2 + ': ') + colors.red(decryptedObject.count) + ': ' + decimalToString(decryptedObject.asciiCodes))
         })
     }
 

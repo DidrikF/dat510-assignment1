@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const { SDES_Decrypter, Trippel_SDES_Decrypter, binaryBufferToASCII } = require('./Decrypter')
+const colors = require('colors')
 
 let binary1 = null;
 let binary2 = null;
@@ -22,7 +23,11 @@ const sdes_decrypter = new SDES_Decrypter(binary1.toString())
 
 const trippel_sdes_decrypter = new Trippel_SDES_Decrypter(binary2.toString())
 
-// decrypter.decrypt()
 
+console.log(colors.green.underline('\n\nSDES Decryption: \n\n'))
+sdes_decrypter.decrypt()
+
+
+console.log('\n\n' + colors.green.underline('Trippel SDES Decryption: \n\n'))
 trippel_sdes_decrypter.decrypt()
 
