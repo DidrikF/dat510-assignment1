@@ -28,6 +28,7 @@ console.log(colors.green.underline('\n\nSDES Decryption: \n\n'))
 sdes_decrypter.decrypt()
 
 
-console.log('\n\n' + colors.green.underline('Trippel SDES Decryption: \n\n'))
+console.log('\n\n' + colors.green.underline('Trippel SDES Decryption: \n'))
+console.log(colors.yellow('I have narrowed down the key search-space to save the user some time. Instead of checking in excess of 1M keys (which I did to find the correct key in the first place), only around 25000 are checked now.') + '\n\n')
 trippel_sdes_decrypter.decrypt()
 

@@ -1,4 +1,23 @@
-# dat510-assignment1
+# Cracking Poly-alphabetic substitution cipher + implementation and cracking of SDES/Trippel SDES
+
+### The contents of this directory
+package.json
+package-lock.json
+.gitignore
+    /vigenere
+        Decrypter.js
+        sdes.js
+        task1.js
+        task2.js
+        task3.js
+        tests.js
+        trippel_sdes.js
+    /SDES
+        cipher-text.txt
+        Decrypter.js
+        helpers.js
+        index.js
+
 
 ### Setup and installation
 The assignemnt was solved using JavaScript and Node.js. To be able to run the programs, Node.js need to be installed.
@@ -19,23 +38,24 @@ Decrypt the poly-alphabetic sustitution cipher:
 
 `node vigenere/index` 
 
-Decrypt the poly-alphabetic sustitution cipher and in addition; print the results of the Index of Coinsidens and Chi-squared statistic calculations.
+Decrypt the poly-alphabetic sustitution cipher and in addition; print the results of the Index of Coincidens and Chi-squared statistic calculations:
 
 `node vigenere/index --verbose=true`
 
 #### Part 2: Simplified DES
 
 ##### Taks 1
-Encrypts/decrypts the plaintext/ciphertext given in task 1 using the Simplifed DES algorithm and prints out the completed table. 
+Encrypts/decrypts the plaintext/ciphertext given in task 1 using the Simplifed DES algorithm and prints out the completed table:
 
 `node SDES/task1`
 
 ##### Task 2
-Encrypts/decrypts the plaintext/ciphertext given in task 2 using trippel SDES and prints out the completed table. 
+Encrypts/decrypts the plaintext/ciphertext given in task 2 using trippel SDES and prints out the completed table:
 
 `node SDES/task2`
 
 ##### Task 3
-Cracks both the SDES and Trippel SDES encrypted messages given in ctx1.txt and ctx2.txt.
+Cracks both the SDES and Trippel SDES encrypted messages given in ctx1.txt and ctx2.txt:
 
 `node SDES/task3`
+

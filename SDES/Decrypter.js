@@ -119,6 +119,7 @@ class Trippel_SDES_Decrypter {
 
         // print the top 15 decrypted results
         console.log(colors.cyan('\nTop 15 results:\n'))
+        console.log('Column names: Key index - Key 1 - Key 2 - Number of A-Za-z characters - ASCII after decryption')
         decrypted.slice(0, 15).forEach(decryptedObject => {
             console.log(colors.green(decryptedObject.keyIndex + ': ' + decryptedObject.key1 + ' - ' + decryptedObject.key2 + ': ') + colors.red(decryptedObject.count) + ': ' + decimalToString(decryptedObject.asciiCodes))
         })
