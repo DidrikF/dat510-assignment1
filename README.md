@@ -1,10 +1,11 @@
 # Cracking Poly-alphabetic substitution cipher + implementation and cracking of SDES/Trippel SDES
 
 ### The contents of this directory
-package.json
-package-lock.json
-.gitignore
-    /vigenere
+.
++--package.json
++--package-lock.json
++--.gitignore
+|   +--/vigenere
         Decrypter.js
         sdes.js
         task1.js
