@@ -3,7 +3,7 @@
 ### The contents of the directory
 
 ```
-project
+dat500-assignment1
 │   package.json    // Declares package dependencies for the project
 │   package-lock.json   // Lists the installed packages with exact version numbers
 │   .gitignore  // Excludes "node-modules" from git
