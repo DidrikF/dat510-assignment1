@@ -1,23 +1,30 @@
 # Cracking Poly-alphabetic substitution cipher + implementation and cracking of SDES/Trippel SDES
 
 ### The contents of this directory
-.
-+--package.json
-+--package-lock.json
-+--.gitignore
-|   +--/vigenere
-        Decrypter.js
-        sdes.js
-        task1.js
-        task2.js
-        task3.js
-        tests.js
-        trippel_sdes.js
-    /SDES
-        cipher-text.txt
-        Decrypter.js
-        helpers.js
-        index.js
+
+```
+project
+│   package.json
+│   package-lock.json    
+│   .gitignore     
+│
+└───vigenere
+│   │   file011.txt
+│   │   file012.txt
+│   │   Decrypter.js
+|   |   sdes.js
+|   |   task1.js
+|   |   task2.js
+|   |   task3.js
+|   |   tests.js
+|   |   trippel_sdes.js
+│   
+└───SDES
+    │   cipher-text.txt
+    |   Decrypter.js
+    |   helpers.js
+    |   index.js
+```
 
 
 ### Setup and installation
@@ -46,6 +53,10 @@ Decrypt the poly-alphabetic sustitution cipher and in addition; print the result
 #### Part 2: Simplified DES
 
 ##### Taks 1
+Test the SDES encryption/decryption implementation with the provided tests cases given in Part 2:
+
+`node SDES/tests`
+
 Encrypts/decrypts the plaintext/ciphertext given in task 1 using the Simplifed DES algorithm and prints out the completed table:
 
 `node SDES/task1`
