@@ -1,29 +1,30 @@
 # Cracking Poly-alphabetic substitution cipher + implementation and cracking of SDES/Trippel SDES
 
-### The contents of this directory
+### The contents of the directory
 
 ```
 project
-│   package.json
-│   package-lock.json    
-│   .gitignore     
+│   package.json    // Declares package dependencies for the project
+│   package-lock.json   // Lists the installed packages with exact version numbers
+│   .gitignore  // Excludes "node-modules" from git
 │
-└───vigenere
-│   │   file011.txt
-│   │   file012.txt
-│   │   Decrypter.js
-|   |   sdes.js
-|   |   task1.js
-|   |   task2.js
-|   |   task3.js
-|   |   tests.js
-|   |   trippel_sdes.js
+└───SDES    // Folder containing code related to Part 2
+│   │   ctx1.txt    // Cipher text to crack
+│   │   ctx2.txt    // Cipher text to crack
+│   │   Decrypter.js    // Classes for cracking and decryption of SDES and Trippel SDES
+|   |   sdes.js // Implementation of SDES encryption and decryption
+|   |   task1.js    // Entry point for Part2 - taks 1
+|   |   task2.js    // Entry point for Part2 - taks 2
+|   |   task3.js    // Entry point for Part2 - taks 3
+|   |   tests.js    // Tests for the implementation of SDES
+|   |   trippel_sdes.js // Implementation of Trippel SDES encryption and decryption
 │   
-└───SDES
-    │   cipher-text.txt
-    |   Decrypter.js
-    |   helpers.js
-    |   index.js
+└───vigenere // Folder containing code related to Part 1
+|   │   cipher-text.txt // Cipher text to crack
+|   |   Decrypter.js // Decrypter class containing code to crack and decrypt the cipher text
+|   |   helpers.js // Varius helper objects and functions
+|   |   index.js // Entry point for part 1 of the project
+└───node_modules // Folder containing installed packages, exogenous to Node.js core packages.
 ```
 
 
