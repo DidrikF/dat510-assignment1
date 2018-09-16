@@ -36,7 +36,8 @@ to print the current version of Node.js installed on the machine.
 
 Depending on the operating system you are using, the dependencies requried may or may not work out of the box. 
 If you are having issues with any of the dependencies I recommend deleting the "node_modules" folder and running:
-`npm install`. this will reinstall all packages the project depends on.
+`npm install`. this will reinstall all packages the project depends on. NPM is a package manager for Node, and is installed 
+alongside it by default.
 
 Your shold now be ready to run the code.
 
