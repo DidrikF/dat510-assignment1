@@ -8,7 +8,7 @@ const runOptions = parseRunOptions();
 let cipherText = '';
 
 try {
-    cipherText = fs.readFileSync(path.join(process.cwd(), 'vigenere', 'cipher-text.txt')).toString();
+    cipherText = fs.readFileSync(path.join(process.cwd(), 'vigenere', 'cipher-text-new.txt')).toString();
 } catch (err) {
     console.log('Failed to read cipher-text file.')
     console.log(err);

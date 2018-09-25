@@ -32,7 +32,7 @@ module.exports = class Decrypter {
     console.log('The key is likely of length: ', likelyKeyLengths)
     console.log('Attempting to find possible keys provided that the key length is ' + likelyKeyLengths[0] + '.')
 
-    const possibleKeys = this.findLikelyKeyCharacters(6)
+    const possibleKeys = this.findLikelyKeyCharacters(likelyKeyLengths[0])
     console.log('The top 3 letters for each of the ' + likelyKeyLengths[0] + ' character positions in the key are as follows:')
     console.log(possibleKeys);
     console.log('These characters where determined to be most likely to comprise the actual key. Frequency analysis using the Chi-squared statistic where used calculate this.')
